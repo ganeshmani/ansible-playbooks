@@ -1,0 +1,12 @@
+---
+- hosts: web1
+  become: true
+  gather_facts: no
+  pre_tasks:
+  - name: 'install python2'
+    raw: sudo apt-get -y install python
+  tasks:
+  - name: Install nginx
+    apt: name=nginx state=present
+  - name: Start nginx
+    service: name=nginx state=started enabled=yes
